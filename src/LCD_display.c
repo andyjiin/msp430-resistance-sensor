@@ -1,12 +1,25 @@
 #include "lcd_display.h"
 #include "driverlib.h"
 
-void lcd_display_show_on_screen(const uint8_t *nums_array){
-    uint8_t ten_thousands = nums_array[0];
-    uint8_t thousands = nums_array[1];
-    uint8_t hundreds = nums_array[2];
-    uint8_t tens = nums_array[3];
-    uint8_t ones = nums_array[4];
+void lcd_display_show_on_screen(const uint16_t num_input){
+
+    uint16_t dividend = num_input;
+    uint8_t num_to_display[5];
+    uint16_t divisor =10000;
+    uint8_t i=0;
+
+    //loop to isolate each digit, starting from the ten-thousands digit and place each digit in array
+    while (divisor>=1){
+        num_to_display[i] = dividend/divisor;
+        dividend = dividend%divisor;
+        i++;
+        divisor/=10;
+    }
+    uint8_t ten_thousands = num_to_display[0];
+    uint8_t thousands = num_to_display[1];
+    uint8_t hundreds = num_to_display[2];
+    uint8_t tens =num_to_display[3];
+    uint8_t ones = num_to_display[4];
 
      // Display the number on the screen
     LCD_E_setMemory(LCD_E_BASE, LCD_E_MEMORY_BLINKINGMEMORY_4, lcd_display_lut_digits[ten_thousands]); // LCD Pin8-Pin9 for ten-thousands digit
@@ -15,7 +28,7 @@ void lcd_display_show_on_screen(const uint8_t *nums_array){
     LCD_E_setMemory(LCD_E_BASE, LCD_E_MEMORY_BLINKINGMEMORY_10,lcd_display_lut_digits[tens]); // LCD Pin20-Pin21 for tens digit
     LCD_E_setMemory(LCD_E_BASE, LCD_E_MEMORY_BLINKINGMEMORY_2, lcd_display_lut_digits[ones]);  // LCD Pin4-Pin5 for ones digit
     LCD_E_setMemory(LCD_E_BASE, LCD_E_MEMORY_BLINKINGMEMORY_18,lcd_display_spacechar);// LCD Pin36-Pin37 for space
-   }
+}
 
 void lcd_display_init(void){
 
