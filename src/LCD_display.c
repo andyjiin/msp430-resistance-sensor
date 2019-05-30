@@ -62,6 +62,8 @@ void lcd_display_init(void){
      LCD_E_setPinAsCOM(LCD_E_BASE, LCD_E_SEGMENT_LINE_1, LCD_E_MEMORY_COM1);
      LCD_E_setPinAsCOM(LCD_E_BASE,LCD_E_SEGMENT_LINE_2, LCD_E_MEMORY_COM2);
      LCD_E_setPinAsCOM(LCD_E_BASE, LCD_E_SEGMENT_LINE_3, LCD_E_MEMORY_COM3);
+
+     LCD_E_on(LCD_E_BASE); // Turn on LCD
 }
 
 void lcd_display_show_on_screen(const uint16_t num_input){
