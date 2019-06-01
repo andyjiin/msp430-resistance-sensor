@@ -1,16 +1,26 @@
 #include <msp430.h>
-#include "lcd_display.h"
 #include "driverlib.h"
-#include <stdint.h>
+#include "Board.h"
 
-void main (void)
-{   
-    WDTCTL = WDTPW | WDTHOLD; // stop watchdog timer
+#include "lcd_display.h"
+#include "adc.h"
+#include "mux.h"
 
-    lcd_display_init(); //initialize and set up LCD
+#define SYSTEM_DELAY 10000
 
-    uint16_t num_input = 703; //number to be displayed
+void main (void) {
+     WDT_A_hold(WDT_A_BASE);
 
-    lcd_display_show_on_screen(num_input); //call display function to show the numbers on the screen
-    LCD_E_on(LCD_E_BASE); // Turn on LCD
+     // Initialize
+     adc_init();
+     lcd_display_init();
+     mux_init();
+
+     // Select reference resistor
+     mux_select(MUX_REF_RESISTOR_100_OHM);
+
+     while(1) {
+         __delay_cycles(SYSTEM_DELAY);
+         lcd_display_show_on_screen(adc_read()); //call display function to show the numbers on the screen
+     }
 }
