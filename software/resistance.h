@@ -1,3 +1,11 @@
+/*
+ * @file: resistance.h
+ *
+ * @brief: Helper macros for resistance related calculations
+ *
+ * @author: a4jin@uwaterloo.ca
+ */
+
 #ifndef RESISTANCE_H_
 #define RESISTANCE_H_
 

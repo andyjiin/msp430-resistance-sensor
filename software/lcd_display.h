@@ -1,3 +1,13 @@
+/*
+ * @file: lcd_display.h
+ *
+ * @brief: This module is written to control the onboard LCD on the MSP430FR4133 LaunchPad.
+ * Utilizes a simple lookup table to easily display digits and simple alphabetical characters
+ * for resistance values with units
+ *
+ * @author: jm5tang@uwaterloo.ca and a4jin@uwaterloo.ca
+ */
+
 #ifndef LCD_DISPLAY_H_
 #define LCD_DISPLAY_H_
 
@@ -10,7 +20,16 @@
 extern const char lcd_display_lut_digits[LCD_DISPLAY_LUT_DIGITS_SIZE];
 extern const char lcd_display_lut_alphabet[LCD_DISPLAY_LUT_ALPHABET_SIZE];
 
+/*
+ * @brief: Initializes the lcd display for display usage
+ */
 void lcd_display_init(void);
+
+/*
+ * @brief: Displays the provided uint16_t to the screen
+ *
+ * @param num_input: The input number to display
+ */
 void lcd_display_show_on_screen(const uint16_t num_input);
 
 #endif /* LCD_DISPLAY_H_ */
