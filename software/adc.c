@@ -4,6 +4,8 @@
 
 static volatile uint16_t adc_reading = 0;
 
+static volatile uint64_t accumulator = 0;
+
 void adc_init(void) {
     // ADC set-up
      GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_ADC8, GPIO_PIN_ADC8, GPIO_FUNCTION_ADC8);
@@ -14,7 +16,7 @@ void adc_init(void) {
      ADC_enable(ADC_BASE);
      // Timer trigger needed to start every ADC conversion
      ADC_setupSamplingTimer(ADC_BASE, ADC_CYCLEHOLD_16_CYCLES, ADC_MULTIPLESAMPLESDISABLE);
-     ADC_configureMemory(ADC_BASE, ADC_INPUT_A8, ADC_VREFPOS_INT, ADC_VREFNEG_AVSS);
+     ADC_configureMemory(ADC_BASE, ADC_INPUT_A8, ADC_VREFPOS_AVCC, ADC_VREFNEG_AVSS);
      // Bit mask of the interrupt flags to be cleared- for new conversion data in the memory buffer
      ADC_clearInterrupt(ADC_BASE, ADC_COMPLETED_INTERRUPT);
      // Enable source to reflected to the processor interrupt
@@ -31,7 +33,9 @@ void adc_init(void) {
 
 uint16_t adc_read(void) {
     ADC_startConversion(ADC_BASE, ADC_SINGLECHANNEL);
-    return adc_reading;
+    // Weighted averages to smooth our noise from the ADC
+    accumulator = accumulator - (accumulator >> 4) + ADC_VOLTAGE_CONVERT(adc_reading);
+    return accumulator >> 4;
 }
 
 #pragma vector=ADC_VECTOR
