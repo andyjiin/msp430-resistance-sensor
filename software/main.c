@@ -29,7 +29,7 @@ void main (void) {
          uint16_t voltage = adc_read();
          uint32_t resistance = RESISTANCE_CALCULATE(voltage, mux_convert_resistance(ref_resistor));
          // If the resistance is above
-         /* if (resistance > 0 && resistance < MUX_REF_RESISTOR_33_OHM_UPPER_BOUND) {
+         if (resistance > 0 && resistance < MUX_REF_RESISTOR_33_OHM_UPPER_BOUND) {
              if (ref_resistor != MUX_REF_RESISTOR_33_OHM) {
                  ref_resistor = MUX_REF_RESISTOR_33_OHM;
                  auto_range = true;
@@ -71,19 +71,18 @@ void main (void) {
               }
          } else {
              // TODO: Turn on warning lights
-         }*/
+         }
 
          if (auto_range) {
              auto_range = false;
              mux_select(ref_resistor);
          }
 
-         /*bool kohm = false;
+         // TODO: Handle units
          if (resistance > USHRT_MAX) {
              resistance = resistance/RESISTANCE_OHM_PER_KOHM;
-             kohm = true;
-         }*/
+         }
 
-         lcd_display_show_on_screen(resistance); //call display function to show the numbers on the screen
+         lcd_display_show_on_screen(resistance); // Call display function to show the numbers on the screen
      }
 }
