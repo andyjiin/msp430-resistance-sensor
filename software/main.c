@@ -19,7 +19,7 @@ void main (void) {
      mux_init();
 
      // Select reference resistor to begin characterization
-     mux_ref_resistor ref_resistor = MUX_REF_RESISTOR_1_KOHM;
+     mux_ref_resistor ref_resistor = MUX_REF_RESISTOR_33_OHM;
      mux_select(ref_resistor);
 
      bool auto_range = false;
@@ -80,7 +80,7 @@ void main (void) {
 
          // TODO: Handle units
          if (resistance > USHRT_MAX) {
-             resistance = resistance/RESISTANCE_OHM_PER_KOHM;
+             resistance = resistance/1000;
          }
 
          lcd_display_show_on_screen(resistance); // Call display function to show the numbers on the screen
