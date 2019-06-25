@@ -75,15 +75,15 @@ uint32_t mux_convert_resistance(mux_ref_resistor resistor) {
         case MUX_REF_RESISTOR_470_OHM:
             return 470;
         case MUX_REF_RESISTOR_1_KOHM:
-            return RESISTANCE_OHM_PER_KOHM;
+            return 1000;
         case MUX_REF_RESISTOR_10_KOHM:
-            return 10 * RESISTANCE_OHM_PER_KOHM;
+            return 10000;
         case MUX_REF_RESISTOR_100_KOHM:
-            return 100 * RESISTANCE_OHM_PER_KOHM;
+            return 100000;
         case MUX_REF_RESISTOR_560_KOHM:
-            return 560 * RESISTANCE_OHM_PER_KOHM;
+            return 560000;
         case MUX_REF_RESISTOR_1120_KOHM:
-            return 1120 * RESISTANCE_OHM_PER_KOHM;
+            return 1120000;
         default:
             // Return an invalid 0 on error
             return 0;
