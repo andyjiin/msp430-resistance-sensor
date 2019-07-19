@@ -54,6 +54,9 @@ uint32_t mux_convert_resistance(mux_ref_resistor resistor);
  */
 void mux_select(mux_ref_resistor resistor);
 
+/*
+ * @brief: Terminates the multiplexer module by resetting all control pins
+ */
 void mux_terminate(void);
 
 #endif /* MUX_H_ */

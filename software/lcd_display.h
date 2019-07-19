@@ -30,6 +30,7 @@ void lcd_display_init(void);
  * @brief: Displays the provided uint16_t to the screen
  *
  * @param num_input: The input number to display
+ * @param unit: The unit of the number to display (unused)
  */
 void lcd_display_show_on_screen(const uint16_t num_input, const char *unit);
 
