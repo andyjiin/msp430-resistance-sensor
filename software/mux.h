@@ -54,4 +54,6 @@ uint32_t mux_convert_resistance(mux_ref_resistor resistor);
  */
 void mux_select(mux_ref_resistor resistor);
 
+void mux_terminate(void);
+
 #endif /* MUX_H_ */

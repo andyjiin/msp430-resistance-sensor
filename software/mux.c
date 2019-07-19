@@ -21,42 +21,42 @@ void mux_init(void) {
 
 void mux_select(mux_ref_resistor resistor) {
     switch(resistor) {
-        case MUX_REF_RESISTOR_33_OHM:
+        case MUX_REF_RESISTOR_1120_KOHM:
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT0, GPIO_PIN_MUX_SELECT0);
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT1, GPIO_PIN_MUX_SELECT1);
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT2, GPIO_PIN_MUX_SELECT2);
             break;
-        case MUX_REF_RESISTOR_100_OHM:
+        case MUX_REF_RESISTOR_560_KOHM:
             GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT0, GPIO_PIN_MUX_SELECT0);
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT1, GPIO_PIN_MUX_SELECT1);
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT2, GPIO_PIN_MUX_SELECT2);
             break;
-        case MUX_REF_RESISTOR_470_OHM:
+        case MUX_REF_RESISTOR_100_KOHM:
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT0, GPIO_PIN_MUX_SELECT0);
-            GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT1, GPIO_PIN_MUX_SELECT1);
-            GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT2, GPIO_PIN_MUX_SELECT2);
-            break;
-        case MUX_REF_RESISTOR_1_KOHM:
-            GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT0, GPIO_PIN_MUX_SELECT0);
             GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT1, GPIO_PIN_MUX_SELECT1);
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT2, GPIO_PIN_MUX_SELECT2);
             break;
         case MUX_REF_RESISTOR_10_KOHM:
+            GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT0, GPIO_PIN_MUX_SELECT0);
+            GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT1, GPIO_PIN_MUX_SELECT1);
+            GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT2, GPIO_PIN_MUX_SELECT2);
+            break;
+        case MUX_REF_RESISTOR_1_KOHM:
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT0, GPIO_PIN_MUX_SELECT0);
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT1, GPIO_PIN_MUX_SELECT1);
             GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT2, GPIO_PIN_MUX_SELECT2);
             break;
-        case MUX_REF_RESISTOR_100_KOHM:
+        case MUX_REF_RESISTOR_470_OHM:
             GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT0, GPIO_PIN_MUX_SELECT0);
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT1, GPIO_PIN_MUX_SELECT1);
             GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT2, GPIO_PIN_MUX_SELECT2);
             break;
-        case MUX_REF_RESISTOR_560_KOHM:
+        case MUX_REF_RESISTOR_100_OHM:
             GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT0, GPIO_PIN_MUX_SELECT0);
             GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT1, GPIO_PIN_MUX_SELECT1);
             GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT2, GPIO_PIN_MUX_SELECT2);
             break;
-        case MUX_REF_RESISTOR_1120_KOHM:
+        case MUX_REF_RESISTOR_33_OHM:
             GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT0, GPIO_PIN_MUX_SELECT0);
             GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT1, GPIO_PIN_MUX_SELECT1);
             GPIO_setOutputHighOnPin(GPIO_PORT_MUX_SELECT2, GPIO_PIN_MUX_SELECT2);
@@ -94,5 +94,5 @@ void mux_terminate(void) {
     GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT0, GPIO_PIN_MUX_SELECT0);
     GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT1, GPIO_PIN_MUX_SELECT1);
     GPIO_setOutputLowOnPin(GPIO_PORT_MUX_SELECT2, GPIO_PIN_MUX_SELECT2);
-    GPIO_setOutputLowOnPin(GPIO_PORT_MUX_ENABLE, GPIO_PIN_MUX_ENABLE);
+    GPIO_setHighLowOnPin(GPIO_PORT_MUX_ENABLE, GPIO_PIN_MUX_ENABLE);
 }

@@ -1,4 +1,5 @@
 #include <limits.h>
+#include <stddef.h>
 #include <msp430.h>
 #include "driverlib.h"
 #include "Board.h"
@@ -25,6 +26,7 @@ void main (void) {
      mux_select(ref_resistor);
 
      bool auto_range = false;
+     indicator_set(true);
 
      while(1) {
          // Read the voltage from the ADC and calculate the resistance
@@ -96,9 +98,12 @@ void main (void) {
          // TODO: Handle units via the LCD
          if (resistance > USHRT_MAX) {
              resistance = resistance/1000;
+             indicator_set(true);
+         } else {
+             indicator_set(false);
          }
 
-         lcd_display_show_on_screen(resistance); // Call display function to show the numbers on the screen
+         lcd_display_show_on_screen(resistance, NULL); // Call display function to show the numbers on the screen
          __delay_cycles(SYSTEM_DELAY); // System delay
      }
 }
