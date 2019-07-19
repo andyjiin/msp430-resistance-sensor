@@ -35,7 +35,11 @@ uint16_t adc_read(void) {
     ADC_startConversion(ADC_BASE, ADC_SINGLECHANNEL);
     // Weighted averages to smooth our noise from the ADC
     accumulator = accumulator - (accumulator >> 4) + ADC_VOLTAGE_CONVERT(adc_reading);
-    return accumulator >> 4;
+    uint16_t result = accumulator >> 4;
+    if (result >= 3300) {
+        accumulator = 0;
+    }
+    return result;
 }
 
 #pragma vector=ADC_VECTOR

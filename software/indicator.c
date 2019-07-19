@@ -3,7 +3,7 @@
 #include "indicator.h"
 
 void indicator_init(void) {
-    GPIO_setAsOutputPin(GPIO_PORT_MUX_ENABLE, GPIO_PIN_MUX_ENABLE);
+    GPIO_setAsOutputPin(GPIO_PORT_INDICATOR, GPIO_PIN_INDICATOR);
 }
 
 void indicator_set(bool on) {

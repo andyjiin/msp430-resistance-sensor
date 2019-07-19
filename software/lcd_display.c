@@ -66,15 +66,14 @@ void lcd_display_init(void){
      LCD_E_on(LCD_E_BASE); // Turn on LCD
 }
 
-void lcd_display_show_on_screen(const uint16_t num_input){
-
+void lcd_display_show_on_screen(const uint16_t num_input, const char *unit) {
     uint16_t dividend = num_input;
-    uint8_t num_to_display[5];
-    uint16_t divisor =10000;
-    uint8_t i=0;
+    uint8_t num_to_display[LCD_DISPLAY_DIGITS];
+    uint16_t divisor = 10000;
+    uint8_t i = 0;
 
     //loop to isolate each digit, starting from the ten-thousands digit and place each digit in array
-    while (divisor>=1){
+    while (divisor >= 1){
         num_to_display[i] = dividend/divisor;
         dividend = dividend%divisor;
         i++;
